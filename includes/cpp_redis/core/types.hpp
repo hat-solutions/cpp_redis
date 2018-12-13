@@ -27,6 +27,7 @@
 #include <vector>
 #include <map>
 #include <chrono>
+#include <ctime>
 #include <cpp_redis/core/reply.hpp>
 #include <functional>
 #include <cpp_redis/impl/types.hpp>
