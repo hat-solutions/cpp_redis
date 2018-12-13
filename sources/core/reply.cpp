@@ -45,6 +45,7 @@ namespace cpp_redis {
 		m_int_val = other.m_int_val;
 	}
 
+#if defined(__cplusplus) && __cplusplus >= 201703L
 	optional<int64_t> reply::try_get_int() const {
 		if (is_integer())
 			return optional<int64_t>()(m_int_val);
@@ -52,6 +53,7 @@ namespace cpp_redis {
 			__CPP_REDIS_LOG(1, "Reply is not an integer");
 			return {};
 	}
+#endif
 
 	reply &
 	reply::operator=(reply &&other) noexcept {

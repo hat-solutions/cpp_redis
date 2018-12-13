@@ -27,9 +27,12 @@
 #include <string>
 #include <vector>
 #include <sstream>
+#if defined(__cplusplus) && __cplusplus >= 201703L
 #include <optional>
-#include <cpp_redis/misc/logger.hpp>
 #include <cpp_redis/misc/optional.hpp>
+#endif
+
+#include <cpp_redis/misc/logger.hpp>
 #include <cpp_redis/misc/convert.hpp>
 #include <cpp_redis/core/reply.hpp>
 
@@ -48,11 +51,13 @@ namespace cpp_redis {
  */
 			virtual const std::string &as_string() const = 0;
 
+#if defined(__cplusplus) && __cplusplus >= 201703L
 /**
  * @return the underlying integer
  *
  */
 			virtual optional<int64_t> try_get_int() const = 0;
+#endif
 
 	protected:
 			std::string m_str_val;

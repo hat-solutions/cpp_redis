@@ -26,7 +26,9 @@
 #include <string>
 #include <vector>
 
+#if defined(__cplusplus) && __cplusplus >= 201703L
 #include <cpp_redis/misc/optional.hpp>
+#endif
 
 #include <cstdint>
 
@@ -194,8 +196,10 @@ namespace cpp_redis {
  */
 			explicit operator bool() const;
 
+#if defined(__cplusplus) && __cplusplus >= 201703L
 	public:
 			optional<int64_t> try_get_int() const;
+#endif
 
 	public:
 /**
