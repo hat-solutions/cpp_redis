@@ -22,26 +22,13 @@
 #include <string>
 #include <cpp_redis/cpp_redis>
 #include <cpp_redis/misc/macro.hpp>
+#include "winsock_initializer.h"
 
 #define ENABLE_SESSION = 1
 
-#ifdef _WIN32
-#include <Winsock2.h>
-#endif /* _WIN32 */
-
 int
 main(void) {
-#ifdef _WIN32
-	//! Windows netword DLL init
-	WORD version = MAKEWORD(2, 2);
-	WSADATA data;
-
-	if (WSAStartup(version, &data) != 0) {
-		std::cerr << "WSAStartup() failure" << std::endl;
-		return -1;
-	}
-#endif /* _WIN32 */
-
+	winsock_initializer winsock_init;
 	//! Enable logging
 	cpp_redis::active_logger = std::unique_ptr<cpp_redis::logger>(new cpp_redis::logger);
 
@@ -70,7 +57,7 @@ main(void) {
 #ifdef ENABLE_SESSION
 
 	client.xadd(session_name, "*", ins, replcmd);
-	client.xgroup_create(session_name, group_name, replcmd);
+	client.xgroup_create(session_name, group_name, "0", replcmd);
 
 	client.sync_commit();
 
@@ -123,10 +110,6 @@ main(void) {
 
 	// synchronous commit, timeout
 	// client.sync_commit(std::chrono::milliseconds(100));
-
-#ifdef _WIN32
-	WSACleanup();
-#endif /* _WIN32 */
 
 	return 0;
 }
