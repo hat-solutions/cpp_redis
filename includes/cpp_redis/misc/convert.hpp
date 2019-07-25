@@ -22,7 +22,6 @@
 #ifndef CPP_REDIS_CONVERT_HPP
 #define CPP_REDIS_CONVERT_HPP
 
-#if defined(__cplusplus) && __cplusplus >= 201703L
 #include <sstream>
 #include <cpp_redis/misc/optional.hpp>
 
@@ -44,6 +43,6 @@ namespace cpp_redis {
 	};
 
 }
-#endif
+
 
 #endif //CPP_REDIS_CONVERT_HPP
