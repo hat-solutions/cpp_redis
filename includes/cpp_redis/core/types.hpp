@@ -26,6 +26,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <ctime>
 #include <chrono>
 #include <ctime>
 #include <cpp_redis/core/reply.hpp>
