@@ -105,7 +105,7 @@ namespace cpp_redis {
 							// The reply is an array if valid
 							cpp_redis::xstream_reply s_reply(reply);
 							if (!s_reply.is_null()) {
-								__CPP_REDIS_LOG(info, "Stream " << s_reply)
+//								__CPP_REDIS_LOG(info, "Stream " << s_reply)
 								for (const auto &stream : s_reply) {
 									for (auto &m : stream.Messages) {
 										if (m_should_read_pending.load())
